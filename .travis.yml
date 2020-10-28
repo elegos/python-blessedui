@@ -1,0 +1,15 @@
+language: python
+matrix:
+  include:
+    - python: 3.7
+    dist: focal
+
+install:
+  - pip install --user pipenv
+  - pipenv install -d
+
+script:
+  - pipenv run python -m pytest
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -f .coverage
