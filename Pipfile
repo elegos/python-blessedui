@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pycodestyle = "*"
+pytest = "*"
+lorem = "*"
+pytest-cov = "*"
+flake8 = "*"
+autopep8 = "*"
+unittest-data-provider = "*"
+
+[packages]
+blessed = "*"
+
+[requires]
+python_version = "3.8"

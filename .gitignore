@@ -1,0 +1,5 @@
+.coverage
+.*_cache
+.coverage-report
+__pycache__
+.vscode
