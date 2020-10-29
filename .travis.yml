@@ -12,7 +12,7 @@ install:
   - PIPENV_IGNORE_VIRTUALENVS=1 pipenv install -d
 
 script:
-  - PIPENV_IGNORE_VIRTUALENVS=1 pipenv --ignore-run python -m pytest
+  - PIPENV_IGNORE_VIRTUALENVS=1 pipenv python -m pytest
 
 after_success:
   - codecov
