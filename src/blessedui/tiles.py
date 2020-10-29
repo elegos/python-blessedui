@@ -34,7 +34,7 @@ class SplitTile(Tile):
             for j in range(len(self.tiles)):
                 line += (
                     tileLines[j][i] if len(tileLines[j]) > i
-                    else self.fillLine(line='', width=subtileWidth, char='')
+                    else self.fillLine(line='', width=subtileWidth, char=' ')
                 )
 
             lines.append(self.fillLine(line=line, width=width, char=' '))
