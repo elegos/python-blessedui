@@ -1,18 +1,24 @@
 language: python
 python:
+  - "3.6"
   - "3.7"
   - "3.8"
   - "3.9"
+
+env:
+  - PIPENV_IGNORE_VIRTUALENVS=1
 
 before_install:
   - pip install -U pipenv
   - pip install -U codecov
 
 install:
-  - PIPENV_IGNORE_VIRTUALENVS=1 pipenv install -d
+  - pipenv install -d
+  # Fix pytest's mising importlib-metadata for Python 3.7
+  - if [ '$(pipenv run python --version 2>/dev/null|grep -P \"3.(6|7)\")' != "" ]; then pipenv install importlib-metadata; fi
 
 script:
-  - PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python -m pytest
+  - pipenv run python -m pytest -c pytest-cov.ini
 
 after_success:
   - codecov
