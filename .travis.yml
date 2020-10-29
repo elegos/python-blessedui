@@ -15,7 +15,7 @@ before_install:
 install:
   - pipenv install -d
   # Fix pytest's mising importlib-metadata for Python 3.7
-  - if [ '$(pipenv run python --version 2>/dev/null|grep -P \"3.(6|7)\")' != "" ]; then pipenv install importlib-metadata; fi
+  - if [ "$(pipenv run python --version 2>/dev/null|grep -P "3.(6|7)")" != "" ]; then pipenv install importlib-metadata; fi
 
 script:
   - pipenv run python -m pytest -c pytest-cov.ini
