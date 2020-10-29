@@ -1,4 +1,5 @@
 from unittest import TestCase
+from unittest.mock import Mock
 
 from blessed import Terminal
 from blessedui import TileSubject
@@ -7,6 +8,19 @@ from tests import DumbTile
 
 
 class TileTestCase(TestCase):
+    def test_tilesubject_subscribe_unsubscribe(self):
+        subject = TileSubject('')
+        observer = Mock()
+
+        subject.subscribe(observer)
+        subject('change 1')
+        subject.unsubscribe(observer)
+        subject('change 2')
+
+        observer.update.assert_called_with('change 1')
+        self.assertEqual(1, observer.update.call_count,
+                         'The observer should be called only when subscribed')
+
     def test_init(self):
         tile = DumbTile(subject=TileSubject('test'), title='title', withBorders=True)
         self.assertEqual('title', tile.title)
