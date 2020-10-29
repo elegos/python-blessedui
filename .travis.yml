@@ -1,13 +1,18 @@
 language: python
 python:
   - "3.7"
+  - "3.8"
+  - "3.9"
+
+before_install:
+  - pip install -U pipenv
+  - pip install -U codecov
 
 install:
-  - pip install --user pipenv
-  - pipenv install -d
+  - PIPENV_IGNORE_VIRTUALENVS=1 pipenv install -d
 
 script:
-  - pipenv run python -m pytest
+  - PIPENV_IGNORE_VIRTUALENVS=1 pipenv --ignore-run python -m pytest
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -f .coverage
+  - codecov
