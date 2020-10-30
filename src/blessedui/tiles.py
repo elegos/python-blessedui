@@ -50,4 +50,4 @@ class TextTile(Tile[str]):
             for i in range(0, len(line), width):
                 lines.append(line[i:i + width])
 
-        return lines
+        return lines[0:height]

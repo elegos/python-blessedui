@@ -101,16 +101,29 @@ class Tile(SubjectObserver[T], Frame):
                 right = terminal.normal + self.borderRight
 
         fillWidth = width - len(escape_ansi(left)) - len(escape_ansi(right))
-        linesNum = height - 1
+        linesNum = height
+        linesToRender = height
+        if self.title != '':
+            linesNum = height - 1
+            linesToRender -= 1
+        if self._bordered:
+            linesNum = height - 1
+            linesToRender -= 1
+
         self._lines.extend([
             left + self.fillLine(line=line, width=fillWidth) + right
             for line in self.render(
                 terminal=terminal,
                 width=fillWidth,
-                height=linesNum,
+                height=linesToRender,
             )
         ])
-        self.fillEmptyLines(width=fillWidth, height=linesNum, leftExtra=left, rightExtra=right)
+        self.fillEmptyLines(
+            width=fillWidth,
+            height=height if not self._bordered else linesNum,
+            leftExtra=left,
+            rightExtra=right,
+        )
 
         if self._bordered:
             bottomLine = terminal.normal + self.borderBottomLeft
@@ -118,8 +131,6 @@ class Tile(SubjectObserver[T], Frame):
                                        char=self.borderBottom) + self.borderBottom
             bottomLine += self.borderBottomRight
             self._lines.append(bottomLine)
-        else:
-            self._lines.append(self.fillLine(line='', width=width, char=' '))
 
         self._shouldRender = False
 

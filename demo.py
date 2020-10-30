@@ -22,10 +22,10 @@ ui.run()
 
 while True:
     sleep(3)
-    textSubject1(lorem.sentence())
-    textSubject2(lorem.sentence())
-    textSubject3(lorem.sentence())
-    textSubject4(lorem.sentence())
-    textSubject5(lorem.sentence())
+    textSubject1(lorem.paragraph())
+    textSubject2(lorem.paragraph())
+    textSubject3(lorem.paragraph())
+    textSubject4(lorem.paragraph())
+    textSubject5(lorem.paragraph())
 
 ui.join()

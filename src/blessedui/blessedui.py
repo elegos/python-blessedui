@@ -62,19 +62,22 @@ class BlessedUI:
 
             numTiles = len(self.tiles)
             width = self.terminal.width
-            height = floor((self.terminal.height - 1) / (numTiles if numTiles > 0 else 1))
+            height = floor(self.terminal.height / (numTiles if numTiles > 0 else 1))
             shouldRender = reduce(lambda x, y: x or y, [
                 tile.shouldRender() for tile in self.tiles
             ], False)
 
             if shouldRender:
+                uiTextLines = []
                 for tile in self.tiles:
                     tile.refresh(terminal=self.terminal, width=width, height=height)
-                    for line in tile.lines:
-                        print(line)
+                    uiTextLines.extend(tile.lines)
+
                 # Fill eventual ending lines
-                for _ in range(self.terminal.height - height * len(self.tiles) - 2):
-                    print(' ' * width)
+                for _ in range(self.terminal.height - len(uiTextLines)):
+                    uiTextLines.append(' ' * width)
+
+                print('\n'.join(uiTextLines), end='')
 
             afterRender = datetime.now()
             waitSeconds = self.frameDuration - (
