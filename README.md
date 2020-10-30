@@ -3,6 +3,8 @@
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 [![Codecov](https://img.shields.io/codecov/c/github/elegos/python-blessedui?token=Q5LZ19E2Z7)](https://codecov.io/gh/elegos/python-blessedui/)
+![PyPI](https://img.shields.io/pypi/v/blessedui)
+![PyPI - Status](https://img.shields.io/pypi/status/blessedui)
 
 This is a python graphic library based on the [blessed](https://pypi.org/project/blessed/) project.
 

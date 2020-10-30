@@ -1,4 +1,3 @@
-[run]
-omit =
-    tests/*
-    demo.py
+[report]
+include =
+    src/*
